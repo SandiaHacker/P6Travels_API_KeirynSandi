@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using P6Travels_API_KeirynSandi.Models;
+using P6Travels_API_KeirynSandi.ModelsDTOs;
 
 namespace P6Travels_API_KeirynSandi.Controllers
 {

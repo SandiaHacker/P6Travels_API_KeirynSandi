@@ -14,8 +14,34 @@
     //bases de datos.
 
 
+
+    //En este ejemplo vamos a transformar el modelo a idioma español,
+    //ya que original esta en inglés e hipoteticamente el equipo de
+    //desarrollo solo hablo español
+
     public class UserDTO
     {
+
+        public int UsuarioID { get; set; }
+
+        public string? Correo { get; set; }
+
+        public string? Nombre { get; set; }
+
+        public string? Telefono { get; set; }
+
+        public string? Contrasennia { get; set;}
+
+        public int RolID { get; set;}
+
+        //hasta acá todas han sido propiedades que estan 
+        //en el modelo original, pero adempas se pueden agregar otras
+        //pensando en cuando hacemos consultas tipo inner join
+        //que combinen datos de varias tables.
+        //siempre es mejor tener versiones lo más "planas" de 
+        //los modelos.
+
+        public string? RolDescripcion { get; set; }
 
 
     }
