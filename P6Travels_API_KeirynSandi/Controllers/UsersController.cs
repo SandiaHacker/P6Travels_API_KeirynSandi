@@ -148,6 +148,36 @@ namespace P6Travels_API_KeirynSandi.Controllers
             return CreatedAtAction("GetUser", new { id = user.UserId }, user);
         }
 
+        //Post de ingreso desde la app usando DTO
+
+        [HttpPost("AddUserFromApp")]
+        public async Task<ActionResult<UserDTO>> AddUserFromApp(UserDTO user)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            //normalmente usamos herramientas como auto mapper para hacer la transformación del
+            //DTO al modelo nativo (en este caso User). Pero para entender mejor o por mayor
+            //control áca haremos el mapeo manualmente
+
+            User NuevoUsuarioNativo = new()
+            {
+                Email = user.Correo,
+                Name = user.Nombre,
+                PhoneNumber = user.Telefono,
+                LoginPassword = user.Contrasennia,
+                UserRoleId = user.RolID,
+                UserRole = null
+            };
+            _context.Users.Add(NuevoUsuarioNativo);
+            await _context.SaveChangesAsync();
+
+            return CreatedAtAction("GetUser", new { id = NuevoUsuarioNativo.UserId }, NuevoUsuarioNativo);
+
+        }
+
         // DELETE: api/Users/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUser(int id)
